@@ -1,6 +1,164 @@
 {{ define "main" }}
 
 <article class="container-fluid overflow-hidden" id="primary-content">
+
+  <!-- Main tools -->
+  <div class="row my-4">
+    <div class="col-md-10 mx-auto">
+      <h2 class="h2 firm-blue" style="border-bottom: 5px solid #181A7B !important"><i class="fas fa-tools mr-1"></i>Main tools</h2>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="border p-2">
+            <div style='background-image: url({{ relURL "images/data.jpeg" }})' class="topimgfill">
+            </div>
+            <h2 class="h4 mt-1">EpiQuery</h2> 
+            <p>Disease data, health surveys, vital statistics.</p>
+            <a href="#" class="btn btn-block btn-outline-secondary">Get data</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="border p-2">
+            <div style='background-image: url({{ relURL "images/map.png" }})' class="topimgfill">
+            </div>
+            <h2 class="h4 mt-1">Environments & health</h2> 
+            <p>Data on how place shapes health</p>
+            <a href="data-explorer/" class="btn btn-block btn-outline-secondary">Get data</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="border p-2">
+            <div style='background-image: url({{ relURL "images/neighb.jpg" }})' class="topimgfill">
+            </div>
+            <h2 class="h4 mt-1">Neighborhood reports</h2> 
+            <p>Health overviews for your neighborhood.</p>
+            <a href="neighborhood-reports/" class="btn btn-block btn-outline-secondary">Get data</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dashboards -->
+  <div class="row my-4">
+    <div class="col-md-10 mx-auto">
+      <h2 class="h2 firm-blue" style="border-bottom: 5px solid #181A7B !important"><i class="fas fa-chart-line mr-1"></i>Dashboards</h2>
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="border">
+            <div class="card-body border-bottom">
+                <h5 class="h5 card-title">HealthyNY</h5>
+                <p class="card-text">
+                    Main drivers of disease and death - and our goals to fight it.</p>
+                <p> <a href="" class="">Get the data ></a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="border">
+            <div class="card-body border-bottom">
+                <h5 class="h5 card-title">Realtime Air Quality</h5>
+                <p class="card-text">
+                    Hourly PM2.5 readings from monitors around the city.</p>
+                <p> <a href="" class="">Get the data ></a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="border">
+            <div class="card-body border-bottom">
+                <h5 class="h5 card-title">Rat Mitigation Zones</h5>
+                <p class="card-text">
+                    Data on areas for focused rat prevention work.</p>
+                <p> <a href="" class="">Get the data ></a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="border">
+            <div class="card-body border-bottom">
+                <h5 class="h5 card-title">COVID-19</h5>
+                <p class="card-text">
+                    Latest data and key metrics on COVID-19 in NYC.</p>
+                <p> <a href="" class="">Get the data ></a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-3 ml-auto">
+          <a class="btn btn-outline-secondary btn-block float-right">All dashboards</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Publications --> 
+
+  <div class="row my-4">
+    <div class="col-md-10 mx-auto">
+      <h2 class="h2 firm-blue" style="border-bottom: 5px solid #181A7B !important">Publications</h2>
+
+      <div class="row mt-2">
+        <div class="col-md-4">
+          <h3 class="h4 border-bottom">Featured</h3>
+
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="h4 border-bottom">Data stories</h3>
+          <div class="card-content mb-4">
+            <div class="card-body">
+              {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
+              
+              <div class="row no-gutters mt-2">
+                <div class="col-3 border">
+                  {{ $src := .Resources.GetMatch .Params.image }}
+                  {{ $image := $src.Resize "740x"}}
+                  <a href="{{ .RelPermalink }}">
+                    <div style="width:100%; height:100%; background-image: URL({{ $image.RelPermalink }}); background-size: cover; background-position: center center; "></div></a>
+                  </div>
+                  
+                  <div class="col-9 ml-auto h-100 pl-1 mb-2">
+                    <p class="fs-sm"><a class="text-info font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a> </p>
+                  </div>
+              </div>
+
+              <hr class="my-1">
+                
+                {{- end -}}
+                <a href={{ relURL "data-stories" }} class="text-info font-weight-bold my-1 float-right">All data stories > </a>
+                
+              </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="h4 border-bottom">Research reports</h3>
+
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-3 ml-auto">
+          See all publications
+        </div>
+      </div>
+
+    </div>
+
+  </div>
   
   <div class="row mt-4">
     <div class="col-lg-8 col-md-12 mb-3">

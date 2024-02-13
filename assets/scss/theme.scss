@@ -75,7 +75,7 @@ h1 {
     line-height: 2.375rem;
     font-weight: 700;
     @include media-breakpoint-up(md){
-        font-size: 2.625rem;
+        font-size: 3rem;
     }
 }
 
@@ -92,7 +92,7 @@ h1 {
     font-size: 1rem;
     line-height: 1.375rem;
     @include media-breakpoint-up(md){
-        font-size: 1.25rem;
+        font-size: 1.75rem;
     }
 }
 
@@ -727,4 +727,9 @@ span.th-sub {
 
 .de-accent {
     color:#00923E!important
+}
+
+
+.firm-blue {
+    color: #181A7B;
 }
