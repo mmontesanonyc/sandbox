@@ -163,7 +163,7 @@
 
                 <div class="nav-item-search border-right">
                     <a class="nav-link" id="nav-item-01" href={{ relURL "" }}>
-                    <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
+                    <span class='firm-blue'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
                     </a>
                 </div>
 
@@ -173,7 +173,7 @@
 
                     <div class="nav-item {{- if (eq $currentPage.FirstSection.RelPermalink .URL) }} active {{- end -}}">
 
-                        <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">{{ .Pre }} {{ .Name }}</a>
+                        <a class="nav-link firm-blue" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">{{ .Pre }} {{ .Name }}</a>
 
                     </div>
 

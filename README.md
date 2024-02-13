@@ -1,32 +1,23 @@
 # HDNYC demo
 
-Grab the Brooklyn Bridge image from the other repo and use that as the header
-Replace the title
-
-Rebuild the home page - IA is below.
-    - Add 'search'
-    - Add 'topics'
 
 Rebuild the Nav Menu. 
-Create first-level stub pages:
-    - EpiQuery (with screenshot embed? Or with new template for sections.)
-    - NRs: add 'Community Health Profiles'
 
+Destroy content and create new top-level pages for:
+    - Data Tools
+        - EpiQuery
+        - EH
+        - NRs
+    - Topics
+        - So many...! Add a search, then list things wildly.
+    - Dashboards
+        - Just start listing out
+    - Publications
+        - Rough categories
 
-- Explore Data
-    - Health surveys
-    - Disease reporting
-    - Birth and death data
-    - Environments and health
+Then, rebuild nav menu
 
-- Neighborhood reports
-    - Community health profiles
-    - Asthma
-    - etc.
-
-- Data Stories
-
-- Dashboards
-
-- Publications
-
+Questions:
+- What's the right way to organize and label content?
+- What are the difference between major data tools, and dashboards? 
+- Are neighborhood reports a 'major data tool' or a dashboard? Or their own thing? 
