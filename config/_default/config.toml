@@ -59,28 +59,28 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
     identifier = "02"
     name = "Publications"
     pre = "<span class='firm-blue'><i class='fas fa-book-open' aria-hidden='true'></i></span>"
-    url = "/data-stories/"
+    url = "/publications/"
     weight = -90
   
   [[menu.main]]
     identifier = "03"
     name = "Dashboards"
     pre = "<span class='firm-blue'><i class='fas fa-chart-line' aria-hidden='true'></i></span>"
-    url = "/key-topics/"
+    url = "/dashboards/"
     weight = -100
   
   [[menu.main]]
     identifier = "04"
     name = "Topics"
     pre = "<span class='firm-blue'><i class='fas fa-sitemap' aria-hidden='true'></i></span>"
-    url = "/neighborhood-reports/"
+    url = "/topics/"
     weight = -105
 
   [[menu.main]]
     identifier = "05"
     name = "Tools"
     pre = "<span class='firm-blue'><i class='fas fa-tools mr-1' aria-hidden='true'></i></span>"
-    url = "/data-explorer/"
+    url = "/tools/"
     weight = -110
 
   [[menu.main]]

@@ -1,0 +1,52 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="col-lg-10 col-md-12 mx-auto my-4">
+        <nav aria-label="breadcrumb" class="mb-2">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                <li class="breadcrumb-item active"><a href={{ relURL "tools" }}>{{ .Title }}</a></li>
+            </ul>
+          </nav>
+                <h1 class="firm-blue"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
+                <p>{{ .Content }}</p>
+
+                <div class="row">
+                    <div class="col-md-4">
+                      <div class="border p-2">
+                        <div style='background-image: url({{ relURL "images/data.jpeg" }})' class="topimgfill">
+                        </div>
+                        <h2 class="h4 mt-1">EpiQuery</h2> 
+                        <p>Disease data, health surveys, vital statistics.</p>
+                        <a href="epiquery/" class="btn btn-block btn-outline-secondary">Get data</a>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="border p-2">
+                        <div style='background-image: url({{ relURL "images/map.png" }})' class="topimgfill">
+                        </div>
+                        <h2 class="h4 mt-1">Environments & health</h2> 
+                        <p>Data on how place shapes health</p>
+                        <a href="ehde/" class="btn btn-block btn-outline-secondary">Get data</a>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="border p-2">
+                        <div style='background-image: url({{ relURL "images/neighb.jpg" }})' class="topimgfill">
+                        </div>
+                        <h2 class="h4 mt-1">Neighborhood reports</h2> 
+                        <p>Health overviews for your neighborhood.</p>
+                        <a href="neighborhood-reports/" class="btn btn-block btn-outline-secondary">Get data</a>
+                      </div>
+                    </div>
+            
+                  </div>
+
+    </div>
+
+    </div>
+    
+</article>
+
+{{ end }}
