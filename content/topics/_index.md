@@ -7,4 +7,4 @@ seo_description: "Explore data on how environments shape health in neighborhoods
 datalibraries: true
 ---
 
-DATA Topics INDEX DOT MARKDOWN
+This landing page would be a way to explore horizontally; topic/product-agnostic, focusing on topics. It could work a little like the EHDP's 'Key Topics' pages, collecting like-topic items from different products onto the same (sub) pages.

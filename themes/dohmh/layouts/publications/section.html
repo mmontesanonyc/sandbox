@@ -12,6 +12,163 @@
                 <h1 class="firm-blue"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
                 <p>{{ .Content }}</p>
 
+                <div class="row my-4">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">Data Stories</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="pills-aq-tab" data-toggle="pill" href="#pills-aq" role="tab" aria-controls="pills-aq" aria-selected="false">Epi Data Briefs</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="pills-transportation-tab" data-toggle="pill" href="#pills-transportation" role="tab" aria-controls="pills-transportation" aria-selected="false">Research Reports</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-justice-tab" data-toggle="pill" href="#pills-justice" role="tab" aria-controls="pills-justice" aria-selected="false">Vital Signs</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-climate-tab" data-toggle="pill" href="#pills-climate" role="tab" aria-controls="pills-climate" aria-selected="false">City Health Information</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-all2-tab" data-toggle="pill" href="#pills-all2" role="tab" aria-controls="pills-all2" aria-selected="false">All publications</a>
+                          </li>
+                          <li class="nav-item pl-2">
+                            <input type="text" placeholder="Search..">
+
+                          </li>
+
+                      </ul>
+
+                      <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                            <p><strong>Data Stories:</strong> Brief, easy-to-read explainers of important health topics. </p>
+                            <ul class="list-group">
+                                <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                </li>
+                                <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                </li>
+                                <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                </li>
+                                <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                </li>
+                                <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                </li>
+                                <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                </li>
+                            </ul>
+                        </div>
+        
+                        <div class="tab-pane fade" id="pills-aq" role="tabpanel" aria-labelledby="pills-aq-tab">
+                            <p><strong>Epi Data Briefs:</strong> Fact sheets and data tables with current NYC health data. </p>
+
+                                <ul class="list-group">
+                                    <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                    </li>
+                                    <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                    </li>
+                                    <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                    </li>
+                                    <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                    </li>
+                                    <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                    </li>
+                                    <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                    </li>
+                                </ul>
+                        </div>
+        
+                        <div class="tab-pane fade" id="pills-transportation" role="tabpanel" aria-labelledby="pills-transportation-tab">
+                            <p><strong>Research reports:</strong> Comprehensive reports on important health topics. </p>
+   
+                            <ul class="list-group">
+                                    <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                    </li>
+                                    <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                    </li>
+                                    <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                    </li>
+                                    <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                    </li>
+                                    <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                    </li>
+                                    <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                    </li>
+                                </ul>
+                        </div>
+            
+                        <div class="tab-pane fade" id="pills-justice" role="tabpanel" aria-labelledby="pills-justice-tab">
+                            <p><strong>Vital Signs:</strong> Brief data stories about important NYC health topics (such as mental health, adolescent health, asthma, and obesity) with policy and program recommendations.
+                            </p>
+    
+                            <ul class="list-group">
+                                    <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                    </li>
+                                    <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                    </li>
+                                    <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                    </li>
+                                    <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                    </li>
+                                    <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                    </li>
+                                    <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                    </li>
+                                </ul>
+                        </div>
+            
+                        <div class="tab-pane fade" id="pills-climate" role="tabpanel" aria-labelledby="pills-climate-tab">
+                            <p><strong>City Health Information:</strong> Reports on timely public health topics of interest to the medical care community, including practice guidelines, resources and more.
+                            </p>
+   
+                            <ul class="list-group">
+                                    <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                    </li>
+                                    <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                    </li>
+                                    <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                    </li>
+                                    <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                    </li>
+                                    <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                                    </li>
+                                    <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                                    </li>
+                                </ul>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-all2" role="tabpanel" aria-labelledby="pills-all2-tab">
+
+                            <ul class="list-group">
+                            <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            </li>
+                            <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                            </li>
+                            <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                            </li>
+                            <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            </li>
+                            <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                            </li>
+                            <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                            </li>
+                            <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            </li>
+                            <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                            </li>
+                            <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                            </li>
+                            <li class="list-group-item">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            </li>
+                            <li class="list-group-item">Aliquam tincidunt mauris eu risus.
+                            </li>
+                            <li class="list-group-item">Vivamus vestibulum ntulla nec ante.
+                            </li>
+                        </ul>
+
+                        </div>
+        
+                </div>
+
     </div>
 
     </div>
