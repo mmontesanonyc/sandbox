@@ -29,26 +29,20 @@ keywords:
     "physical activity",
   ]
 indicators:
-  - header: "Prevalence: Adults"
+  - header: 
     IndicatorID:
       - 2414
       - 18
-  - header: "Prevalence: Children"
-    IndicatorID:
       - 2392
       - 2339
       - 2429
       - 2431
-  - header: Asthma Emergency Department Visits
-    IndicatorID:
       - 2380
       - 2384
       - 2048
       - 2378
       - 2379
       - 2383
-  - header: Asthma Hospitalizations
-    IndicatorID:
       - 2382
       - 2387
       - 84
