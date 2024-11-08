@@ -7,4 +7,22 @@ You will need to:
 - Install this repository's dependencies via `npm install`
 
 ## The basics
-In the terminal, you can preview this by entering the command `hugo serve`. 
+In the terminal, you can preview this by entering the command `hugo serve --environment production`. Hugo will print to the terminal a local URL where you can preview this - likely something like `https://localhost1313`.
+
+To build the site, the command `hugo --environment production` will assemble the site to the `/docs` folder.
+
+## How this works
+This Data Explorer will display neighborhood-level data with the following views:
+- Table
+- Map
+- Trend
+- Correlates (including disparities)
+
+It requires:
+- A file called `metadata.json` that includes important metadata about your indicators. These include: numeric IDs, names and descriptions, and flags for which views should be displayed in the Data Explorer.
+- Individual indicator data files, `[numericID].json`.
+- Geography files for each geography you use.
+
+## Worth noting
+This repository likely has a bunch of extra code. We have taken our product and simplified it a lot, but there is further simplication that can happen. 
+
