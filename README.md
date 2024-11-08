@@ -22,7 +22,10 @@ It requires:
 - A file called `metadata.json` that includes important metadata about your indicators. These include: numeric IDs, names and descriptions, and flags for which views should be displayed in the Data Explorer.
 - Individual indicator data files, `[numericID].json`.
 - Geography files for each geography you use.
+- `comparisons.json` which provides metadata for the Trend chart's 'comparison' function, which displays similar measures from different indicators. 
 
 ## Worth noting
 This repository likely has a bunch of extra code. We have taken our product and simplified it a lot, but there is further simplication that can happen. 
 
+
+https://busy-detergent.cloudvent.net/data-explorer/economic-conditions/?id=103#display=summary
