@@ -107,8 +107,8 @@ If an Indicator has the `Comparisons` metadata item (eg the below), then the Dat
 ```
 
 **Coorrelates**: Correlates are scatterplots, joining the measure with other measures (from other indicators) in a scatterplot view. They are determined by information in a measures's `VisOptions.Links` object. 
-- Disparities: a 0/1 binary that indicates whether to show the Disparities view. The Disparities view matches the indicator with Neighborhood Poverty and shows it as a binned scatterplot.
-- Measures: this section is an array of other measures to scatterplot to. `SecondaryAxis` determines which indicator should be on the x axis, and which should be on the y axis.
+- Disparities: a 0/1 binary that indicates whether to show the Disparities view. The Disparities view matches the indicator with Neighborhood Poverty (on the most recent overlapping year/time period) and shows it as a binned scatterplot.
+- Measures: this section is an array of other measures to scatterplot to. `SecondaryAxis` determines which indicator should be on the x axis, and which should be on the y axis. In order for this to function propertly, the two measures that are linked need to share a Geography. Eg, if one measure has neighborhood-level data at the Community District geography, but the other only has data at the Borough geography, then it will not work properly. 
 
 ## Other Metadata
 An indicator's metadata includes:
