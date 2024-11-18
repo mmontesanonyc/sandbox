@@ -36,6 +36,10 @@ It also requires:
 - Data files in `static/indicators/data`. These are individual data files, which match on the IndicatorID in the `metadata.json` file, and so each are named `[IndicatorID].json`.
 - Geography files in `static/geography` - topo.json files for the geographies you use. This Data Explorer's map uses a basemap of boroughs to provide a gray underlayer for when there are non-data areas (eg parks).
 
+You can further make this your own by modifying the following files to affect what is displayed, and how:
+- `index.html` - the template of this Data Explorer
+- JavaScript files in `/assets/js/data-explorer/` - the JS that powers the Data Explorer
+
 ## How this works
 This Data Explorer will display neighborhood-level data with the following views:
 - Table
@@ -149,3 +153,6 @@ The technologies this leverages are:
 - JavaScript, for managing interaction and client-side data management
 - DataTables.net for displaying the summary data tables
 - Vega-Lite, for generating interactive visualizations
+
+## Questions, issues, etc
+We can answer questions about this repository - feel free to open issues.
