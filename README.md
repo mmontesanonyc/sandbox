@@ -1,15 +1,40 @@
 # A re-usable data explorer based on the NYC Environment and Health Data Portal
 This repository contains re-usable code that you can use to build your own Data Explorer - an embeddable web application that lets you add datasets so that users can browse and visualize data. 
 
+We have stripped down the [Environment and Health Data Portal](https://a816-dohbesp.nyc.gov/IndicatorPublic) to just a single page - the Asthma page on the Data Explorer. 
+
 ## Getting started
 You will need to:
 - Install hugo and npm
 - Install this repository's dependencies via `npm install`
 
+This Readme file provides information on how to make this your own. However, you will likely need a developer with a decent understanding of static sites (this uses Hugo), JavaScript, and data.
+
 ## The basics
 In the terminal, you can preview this by entering the command `hugo serve --environment production`. Hugo will print to the terminal a local URL where you can preview this - likely something like `https://localhost1313`.
 
 To build the site, the command `hugo --environment production` will assemble the site to the `/docs` folder.
+
+You could, for example, fork this repository, put it in your own Github repository, serve it via Github Pages, and iframe that 'site' into your own website. 
+
+## How to make it your own
+You can make this your own by replacing the data and metadata with your own files. These will need to be structured the same way that we structure data for the Environment and Health Data Portal. This Readme file contains information on how to structure data and metadata files so that they can be displayed in here. 
+
+Big picture, you will need to:
+- Have a database of files
+- Export those data to json files structured as indicated here
+- Replace our files (detailed below) with your own
+
+You will need:
+
+Metadata files in `/static/indicators/metadata`, including:
+-  `metadata.json`, which includes important metadata about your indicators. These include: numeric IDs, names and descriptions, and flags for which views should be displayed in the Data Explorer. (This file also needs to exist in `/assets/indicators/metadata` since it is accessed by Hugo in the page template.)
+- `comparisons.json` which includes metadata for Comparisons views - instances where the Trend display shows measures from several different indicators (as opposed to showing a geographic breakdown of one measure).
+- `TimePeriods.json` - a central reference file for time periods.
+
+It also requires:
+- Data files in `static/indicators/data`. These are individual data files, which match on the IndicatorID in the `metadata.json` file, and so each are named `[IndicatorID].json`.
+- Geography files in `static/geography` - topo.json files for the geographies you use. This Data Explorer's map uses a basemap of boroughs to provide a gray underlayer for when there are non-data areas (eg parks).
 
 ## How this works
 This Data Explorer will display neighborhood-level data with the following views:
@@ -18,16 +43,109 @@ This Data Explorer will display neighborhood-level data with the following views
 - Trend
 - Correlates (including disparities)
 
-It requires:
-- A file called `metadata.json` that includes important metadata about your indicators. These include: numeric IDs, names and descriptions, and flags for which views should be displayed in the Data Explorer.
-- Individual indicator data files, `[numericID].json`.
-- Geography files for each geography you use.
-- `comparisons.json` which provides metadata for the Trend chart's 'comparison' function, which displays similar measures from different indicators. 
+The markdown file in `/content/_index.md` references the IndicatorIDs in `metadata.json`. Hugo builds pages by combining the content in a markdown file with a template file; when Hugo builds this site, it will take the IDs in `_index.md`'s frontmatter, look for those IDs in `metadata.json`, and then print the `IndicatorName` field to the page, in the list of datasets.
+
+The page will load data for the selected indicator by getting the numeric data file, `[IndicatorID].json`, that corresponds to the chosen indicator's `IndicatorID`. The page will also look at that indicator's metadata (in `metadata.json`) for various aspects of the indicator: what measures it has, what time periods, what geographies. It will use this metadata to:
+- Filter `[IndicatorID].json` prepare a data object that it delivers to the table or visualizations for rendering on the page
+- Create the drop-down menus for different interaction options
+
+The following terms are used in our data:
+- An **indicator** is the organizing unit of these datasets. 
+- A **measure** is a sub-unit of an indicator - For example, an indicator may have one measure that is the number of asthma emergency department visits, and another measure is the rate per 100,000 people of asthma emergency department visits.
+- A **geography** is the geographic scale of the data. Most indicators have data at the Citywide and Boroughs geographies, as well as data at several different neighborhood geographies, including Community District, Neighborhood Tabulation Area, and UHF42 neighborhoods. 
+- Any given **value** is a value for a measure of an indicator, at a geography, for a time period.
+
+## Aspects of the different views
+**Table**: Each indicator by default displays a table, which shows all measures for the indicator, all geographies, and the most recent time period. 
+
+**Maps and charts - a general overview**: When a user clicks a view tab (eg, Map, Trend, Correlate), the JavaScript passes the data and metadata into `renderMap()` or `renderTrend()` or other similar functions. These functions take the data and metadata and deliver it to a Vega-Lite visualization specification, and print it to other key parts of the page (eg, the data source, notes, or 'how calculated' fields on the page).
+
+Generally, these are set to display for specific measures. 
+
+**Map**: A map will display for an indicator if, for its measures, it has information in `VisOptions.Map` in its entry in `metadata.json`. For example:
+
+```
+            "Map": [
+              {
+                "GeoType": "Borough",
+                "TimePeriodID": [38, 39, 40],
+                "RankReverse": 0
+              },
+              {
+                "GeoType": "UHF42",
+                "TimePeriodID": [38, 39, 40],
+                "RankReverse": 0
+              }
+            ],
+```
+
+For this indicator's measures, it will offer maps at Borough and UHF42 geographies, for the three time periods indicated there (time period IDs match those in `TimePeriods.json`).
+
+To turn off maps for a measure, just put nulls in the options:
+
+```
+            "Map": [
+              {
+                "GeoType": null,
+                "TimePeriodID": [],
+                "RankReverse": null
+              }
+            ],
+```
+
+A few aspects of the maps:
+- Maps will default to show the finest geography and the most recent time period. To add more geographies or change the order of 'finest geographies', see "set geo file based on geo type" in `assets/js/data-explorer/maps.js`.
+- Maps will show choropleth maps for population-controlled measures (rates, percents, etc), and bubble maps for counts/numbers.
+- Map display options can be set in `assets/js/data-explorer/maps.js` by modifying the Vega-Lite spec. 
+
+**Trend chart**: Our example data in this repository default to displaying trend data for Citywide and Borough geographies, as neighborhood-level health data is often too variable to be reliable. 
+
+If an Indicator has the `Comparisons` metadata item (eg the below), then the Data Explorer will look up the corresponding numeric ID in `comparisons.json` and use the information in there (the indicator and measure IDs, geographic resolutions, etc) to create a trend chart that shows several indicators.
+
+```
+    "Comparisons": [537],
+```
+
+**Coorrelates**: Correlates are scatterplots, joining the measure with other measures (from other indicators) in a scatterplot view. They are determined by information in a measures's `VisOptions.Links` object. 
+- Disparities: a 0/1 binary that indicates whether to show the Disparities view. The Disparities view matches the indicator with Neighborhood Poverty and shows it as a binned scatterplot.
+- Measures: this section is an array of other measures to scatterplot to. `SecondaryAxis` determines which indicator should be on the x axis, and which should be on the y axis.
+
+## Other Metadata
+An indicator's metadata includes:
+- IndicatorID - a unique numeric ID corresponding to the name of the datafile
+- IndicatorName - the name of the indicator, which gets displayed on the page.
+- IndicatorLabel - an alternate field that can be used.
+- IndicatorDescription - a short description used on the page.
+- Comparisons - an ID that matches information in `comparisons.json`
+- Measures - information about each indicator's measures. View-level information (eg, what will be shown on a map, trend, or correlates chart) is set at the measure level.
+
+Measure-level metadata includes:
+- MeasureID - a unique numeric ID
+- MeasureName 
+- MeasurementType 
+- how_calculated - information about how this measure is calculated
+- Sources - the measure's data sources
+- DisplayType - what may be appended to the value to indicate the MeasurementType.
+- AvailableGeoTypes - an array of geographies available in this dataset
+- TrendNoCompare - a flag that indicates whether there should be a vertical line indicating no comparison before and after. Should be a string with a year value, or null.
+- AvailableTimePeriodIDs - the IDs (matched in `TimePeriods.json`) avaailable in the data.
+- VisOptions - a set of flags and information for which visualization options to activate.
+
+VisOptions include:
+- Table: GeoTypes and TimePeriodIDs
+- Map: GeoTpyes, TimePeriodIDs, and RankReverse (a 0/1 flag currently not used, but which can be used to show different colors - for example, if you want one color scheme for high = good datasets and a different one for high = bad datasets)
+- Trend: GeoType and TimePeriodIDs to show on the Trend Chart.
+- Links: Disparities, and Measures to link in the Correlates view.
 
 ## Worth noting
 This repository likely has a bunch of extra code. We have taken our product and simplified it a lot, but there is further simplication that can happen. 
 
-We place the `/indicators` folder BOTH in /assets and in /static, because they're accessed both by the JavaScript, and by Hugo's processing. May optimize this in the future...
+The data in this repository are copies of the data in [EHDP-data](www.github.com/nychealth/EHDP-data), *at the time of this repository's creation*. Therefor, it may be out of date by the time of publication; data in this repository, then, are not canonical; they're for demonstration purposes only.
 
-
-https://busy-detergent.cloudvent.net/data-explorer/economic-conditions/?id=103#display=summary
+The technologies this leverages are:
+- The NYC Core Framework, a Bootstrap-based front-end framework
+- D3, for ingesting data
+- Arquero, for ingesting and manipulating data on the client side
+- JavaScript, for managing interaction and client-side data management
+- DataTables.net for displaying the summary data tables
+- Vega-Lite, for generating interactive visualizations
