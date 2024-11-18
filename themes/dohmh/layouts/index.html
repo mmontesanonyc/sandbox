@@ -930,7 +930,7 @@
 
 {{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */}}
 
-{{- $metadata_json_resource := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/indicators/metadata/metadata.json")) | transform.Unmarshal -}}
+{{- $metadata_json_resource := (resources.Get "indicators/metadata/metadata.json") | transform.Unmarshal -}}
 
 {{- /* ----  get names from metadata.json, using scratch  ---- */}}
 

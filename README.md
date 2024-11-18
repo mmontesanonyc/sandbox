@@ -27,5 +27,7 @@ It requires:
 ## Worth noting
 This repository likely has a bunch of extra code. We have taken our product and simplified it a lot, but there is further simplication that can happen. 
 
+We place the `/indicators` folder BOTH in /assets and in /static, because they're accessed both by the JavaScript, and by Hugo's processing. May optimize this in the future...
+
 
 https://busy-detergent.cloudvent.net/data-explorer/economic-conditions/?id=103#display=summary
