@@ -29,7 +29,7 @@ keywords:
     "physical activity",
   ]
 indicators:
-  - header: 
+  - header: Prevalence
     IndicatorID:
       - 2414
       - 18
@@ -37,12 +37,16 @@ indicators:
       - 2339
       - 2429
       - 2431
+  - header: ED visits
+    IndicatorID:
       - 2380
       - 2384
       - 2048
       - 2378
       - 2379
       - 2383
+  - header: Hospitalizations
+    IndicatorID:
       - 2382
       - 2387
       - 84

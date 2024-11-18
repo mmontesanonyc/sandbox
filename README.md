@@ -3,6 +3,8 @@ This repository contains re-usable code that you can use to build your own Data 
 
 We have stripped down the [Environment and Health Data Portal](https://a816-dohbesp.nyc.gov/IndicatorPublic) to just a single page - the Asthma page on the Data Explorer. 
 
+We built this Data Explorer to be simple, powerful, intuitive, responsive, accessible, and useful. We also want it to be an asset for other projects, so are making this code available outside the context of the rest of the site in hopes that it helps other projects use this (or aspects of it).
+
 ## Getting started
 You will need to:
 - Install hugo and npm
@@ -10,12 +12,11 @@ You will need to:
 
 This Readme file provides information on how to make this your own. However, you will likely need a developer with a decent understanding of static sites (this uses Hugo), JavaScript, and data.
 
-## The basics
-In the terminal, you can preview this by entering the command `hugo serve --environment production`. Hugo will print to the terminal a local URL where you can preview this - likely something like `https://localhost1313`.
+In the terminal, you can preview the site by entering the command `hugo serve --environment production`. Hugo will print to the terminal a local URL where you can preview this - likely something like `https://localhost1313/`.
 
 To build the site, the command `hugo --environment production` will assemble the site to the `/docs` folder.
 
-You could, for example, fork this repository, put it in your own Github repository, serve it via Github Pages, and iframe that 'site' into your own website. 
+You could also, for example, fork this repository, put it in your own Github repository, serve it via Github Pages, and iframe that 'site' into your own website. 
 
 ## How to make it your own
 You can make this your own by replacing the data and metadata with your own files. These will need to be structured the same way that we structure data for the Environment and Health Data Portal. This Readme file contains information on how to structure data and metadata files so that they can be displayed in here. 
@@ -40,6 +41,8 @@ You can further make this your own by modifying the following files to affect wh
 - `index.html` - the template of this Data Explorer
 - JavaScript files in `/assets/js/data-explorer/` - the JS that powers the Data Explorer
 
+Please do due dilligence before launching your own project using this code. Test your data, and features. For example, the Citation Function (as written in here) still mentions the NYC Department of Health and Mental Hygiene; this is one of the other things you'll likely want to modify in order to properly adapt this repository for your own uses.
+
 ## How this works
 This Data Explorer will display neighborhood-level data with the following views:
 - Table
@@ -47,7 +50,7 @@ This Data Explorer will display neighborhood-level data with the following views
 - Trend
 - Correlates (including disparities)
 
-The markdown file in `/content/_index.md` references the IndicatorIDs in `metadata.json`. Hugo builds pages by combining the content in a markdown file with a template file; when Hugo builds this site, it will take the IDs in `_index.md`'s frontmatter, look for those IDs in `metadata.json`, and then print the `IndicatorName` field to the page, in the list of datasets.
+The markdown file in `/content/_index.md` has frontmatter in `indicators` which reference the IndicatorIDs in `metadata.json`. Hugo builds pages by combining the content in a markdown file with a template file; when Hugo builds this site, it will take the IDs in `_index.md`'s frontmatter, look for those IDs in `metadata.json`, and then print the `IndicatorName` field to the page, in the list of datasets.
 
 The page will load data for the selected indicator by getting the numeric data file, `[IndicatorID].json`, that corresponds to the chosen indicator's `IndicatorID`. The page will also look at that indicator's metadata (in `metadata.json`) for various aspects of the indicator: what measures it has, what time periods, what geographies. It will use this metadata to:
 - Filter `[IndicatorID].json` prepare a data object that it delivers to the table or visualizations for rendering on the page
