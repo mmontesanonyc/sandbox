@@ -51,7 +51,7 @@ const fetch_comparisons = async () => {
     
     console.log("* fetch_comparisons.json");
 
-    await fetch(`${data_repo}${data_branch}/indicators/metadata/comparisons.json`)
+    await fetch(`indicators/metadata/comparisons.json`)
         .then(response => response.json())
         .then(async data => {
             
@@ -177,7 +177,7 @@ const createComparisonData = async (comps) => {
             
             // get data for an indicator
 
-            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
+            return aq.loadJSON(`indicators/data/${ind[0]}.json`)
                 .then(async data => {
 
                     // console.log("** aq.loadJSON [createComparisonData]");
@@ -339,7 +339,7 @@ const loadData = async (this_indicatorId) => {
 
     console.log("* loadData");
 
-    fetch(`${data_repo}${data_branch}/indicators/data/${this_indicatorId}.json`)
+    fetch(`indicators/data/${this_indicatorId}.json`)
         .then(response => response.json())
         .then(async data => {
 
@@ -376,7 +376,7 @@ const loadGeo = async () => {
 
     console.log("* loadGeo");
 
-    const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.json`; // col named "GeoType"
+    const geoUrl = `geography/GeoLookup.json`; // col named "GeoType"
 
     await aq.loadJSON(geoUrl, {autoType: false})
         .then(async (data) => {
@@ -397,7 +397,7 @@ const loadTime = async () => {
 
     console.log("* loadTime");
 
-    const timeUrl = `${data_repo}${data_branch}/indicators/metadata/TimePeriods.json`;
+    const timeUrl = `indicators/metadata/TimePeriods.json`;
 
     await aq.loadJSON(timeUrl, {autoType: false})
         .then(async (data) => {
@@ -870,7 +870,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     //  (fetches run asynchronously by default, but we need this data to do other things, so we have to 
     //  `await` the result before continuing)
 
-    await fetch(`${data_repo}${data_branch}/indicators/data/${secondaryIndicatorId}.json`)
+    await fetch(`indicators/data/${secondaryIndicatorId}.json`)
         .then(response => response.json())
         .then(async data => {
 

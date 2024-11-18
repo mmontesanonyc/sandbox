@@ -397,7 +397,7 @@ const renderMap = (
                         "height": 500,
                         "width": "container",
                         "data": {
-                            "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
+                            "url": `geography/borough.topo.json`,
                             "format": {
                                 "type": "topojson",
                                 "feature": "collection"
@@ -415,7 +415,7 @@ const renderMap = (
                         "height": 500,
                         "width": "container",
                         "data": {
-                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                            "url": `geography/${topoFile}`,
                             "format": {
                                 "type": "topojson",
                                 "feature": "collection"
@@ -440,7 +440,7 @@ const renderMap = (
                                 "lookup": "GeoID",
                                 "from": {
                                     "data": {
-                                        "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                                        "url": `geography/${topoFile}`,
                                         "format": {"type": "topojson", "feature": "collection"}
                                     },
                                     "key": "properties.GEOCODE"
