@@ -1,20 +1,29 @@
 # A re-usable data explorer based on the NYC Environment and Health Data Portal
 This repository contains re-usable code that you can use to build your own Data Explorer - an embeddable web application that lets you add datasets so that users can browse and visualize data. 
 
-We have stripped down the [Environment and Health Data Portal](https://a816-dohbesp.nyc.gov/IndicatorPublic) to just a single page - the Asthma page on the Data Explorer. 
+We have stripped down the [Environment and Health Data Portal](https://a816-dohbesp.nyc.gov/IndicatorPublic) to just a single page - the [Asthma page on the Data Explorer](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/asthma/). We've chosen Asthma because the asthma datasets (indicators) span a range of dataset types, making it a pretty useful one-page example of how the Data Explorer can display different options.
 
 We built this Data Explorer to be simple, powerful, intuitive, responsive, accessible, and useful. We also want it to be an asset for other projects, so are making this code available outside the context of the rest of the site in hopes that it helps other projects use this (or aspects of it).
 
-## Getting started
-You will need to:
-- Install hugo and npm
-- Install this repository's dependencies via `npm install`
+The technologies this leverages are:
+- [The NYC Core Framework](https://www.nyc.gov/assets/oti/html/nyc-core-framework/index.html), a Bootstrap-based front-end framework
+- [D3](https://d3js.org/), for ingesting data
+- [Arquero](https://github.com/uwdata/arquero), for ingesting and manipulating data on the client side
+- JavaScript, for managing interaction and client-side data management
+- [DataTables.net](https://datatables.net/) for displaying the summary data tables
+- [Vega-Lite](https://vega.github.io/vega-lite/), for generating interactive visualizations
 
+## Getting started
 This Readme file provides information on how to make this your own. However, you will likely need a developer with a decent understanding of static sites (this uses Hugo), JavaScript, and data.
 
-In the terminal, you can preview the site by entering the command `hugo serve --environment production`. Hugo will print to the terminal a local URL where you can preview this - likely something like `https://localhost1313/`.
+You will need to install:
+- Hugo
+- npm
+- This repository's dependencies
 
-To build the site, the command `hugo --environment production` will assemble the site to the `/docs` folder.
+Once you have those installed and this repository opened in an IDE, then, you canopen the terminal and preview the site by entering the command `hugo serve`. Hugo will print to the terminal a local URL where you can preview this - likely something like `http://localhost:1313/`.
+
+To build the site, the command `hugo` will assemble the site to the `/docs` folder.
 
 You could also, for example, fork this repository, put it in your own Github repository, serve it via Github Pages, and iframe that 'site' into your own website. 
 
@@ -61,6 +70,16 @@ The following terms are used in our data:
 - A **measure** is a sub-unit of an indicator - For example, an indicator may have one measure that is the number of asthma emergency department visits, and another measure is the rate per 100,000 people of asthma emergency department visits.
 - A **geography** is the geographic scale of the data. Most indicators have data at the Citywide and Boroughs geographies, as well as data at several different neighborhood geographies, including Community District, Neighborhood Tabulation Area, and UHF42 neighborhoods. 
 - Any given **value** is a value for a measure of an indicator, at a geography, for a time period.
+
+You may notice that the data files (in `/static/indicators/data`) have the following fields:
+- MeasureID: a unique numeric ID for the measure
+- GeoID: a ID for the geographic unit
+- GeoType: the geography to which the GeoID applies; eg, a datapoint might have the GeoID of "1", which means "The Bronx" if the GeoType is "Borough," or "NYC" if the GeoType is "Citywide" (GeoLookup.csv is a reference file for geographies, GeoTypes, GeoIDs, and names).
+- TimePeriodID: a unique ID for the time period for the data point (TimePeriods.json is a reference file for TimePeriodIDs)
+- Value: the data value.
+- CI: the confidence interval, if it applies to this measure
+- DisplayValue: the value, as a string intended for display. This field is used if, for example, a value might be suppressed and not intended for display.
+- Note: A note accompanying this datapoint, if applicable.
 
 ## Aspects of the different views
 **Table**: Each indicator by default displays a table, which shows all measures for the indicator, all geographies, and the most recent time period. 
@@ -113,7 +132,7 @@ If an Indicator has the `Comparisons` metadata item (eg the below), then the Dat
     "Comparisons": [537],
 ```
 
-**Coorrelates**: Correlates are scatterplots, joining the measure with other measures (from other indicators) in a scatterplot view. They are determined by information in a measures's `VisOptions.Links` object. 
+**Correlates**: Correlates are scatterplots, joining the measure with other measures (from other indicators) in a scatterplot view. They are determined by information in a measures's `VisOptions.Links` object. 
 - Disparities: a 0/1 binary that indicates whether to show the Disparities view. The Disparities view matches the indicator with Neighborhood Poverty (on the most recent overlapping year/time period) and shows it as a binned scatterplot.
 - Measures: this section is an array of other measures to scatterplot to. `SecondaryAxis` determines which indicator should be on the x axis, and which should be on the y axis. In order for this to function propertly, the two measures that are linked need to share a Geography. Eg, if one measure has neighborhood-level data at the Community District geography, but the other only has data at the Borough geography, then it will not work properly. 
 
@@ -148,14 +167,6 @@ VisOptions include:
 This repository likely has a bunch of extra code. We have taken our product and simplified it a lot, but there is further simplication that can happen. 
 
 The data in this repository are copies of the data in [EHDP-data](www.github.com/nychealth/EHDP-data), *at the time of this repository's creation*. Therefor, it may be out of date by the time of publication; data in this repository, then, are not canonical; they're for demonstration purposes only.
-
-The technologies this leverages are:
-- The NYC Core Framework, a Bootstrap-based front-end framework
-- D3, for ingesting data
-- Arquero, for ingesting and manipulating data on the client side
-- JavaScript, for managing interaction and client-side data management
-- DataTables.net for displaying the summary data tables
-- Vega-Lite, for generating interactive visualizations
 
 ## Questions, issues, etc
 We can answer questions about this repository - feel free to open issues.
